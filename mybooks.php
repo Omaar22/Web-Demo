@@ -6,12 +6,12 @@ session_start();
     <meta charset="utf-8"/>
     <title>My Books</title>
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="https://www.w3schools.com/lib/w3.js"></script>
 </head>
 
 <body>
 
-<div w3-include-html="fragments/header-in.html"></div>
+<?php include "fragments/header-in.html"; ?>
+
 <div class="container">
     <h1 class="form-heading">My Books</h1>
     <hr>
@@ -19,7 +19,7 @@ session_start();
     <form action="#" method="post">
         <select name="bookChoice" id="bookChoice" style="width:300px;  height: 30px">
             <?php
-            $con = mysqli_connect("localhost", "root", "123");
+            $con = mysqli_connect("localhost", "root", "");
 
             mysqli_select_db($con, "web_demo");
 
@@ -56,14 +56,10 @@ session_start();
     </table>
 
 </div>
-<script>
-    w3.includeHTML();
-</script>
-
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $con = mysqli_connect("localhost", "root", "123");
+    $con = mysqli_connect("localhost", "root", "");
 
     mysqli_select_db($con, "web_demo");
 

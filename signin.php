@@ -2,31 +2,33 @@
 session_start();
 ?>
 <html>
-<?php
+<head>
+    <meta charset="utf-8"/>
+    <title>Sign in</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+</head>
 
-$email = $_POST["email"];
-$password = $_POST["password"];
+<body>
 
-$con = mysqli_connect("localhost", "root", "123");
+<?php include "fragments/header.html"; ?>
 
-mysqli_select_db($con, "web_demo");
+<div class="container">
+    <form action="check_signin.php" method="post" class="form">
+        <h1 class="form-heading">Sign In</h1>
+        <input type="email" name="email" class="form-control" placeholder="Email address" required="required"/>
+        <input type="password" name="password" class="form-control" placeholder="Password"
+               required="required"/>
+        <?php
+         if (isset($_SESSION["error"])) {
+             echo '<div class="alert alert-danger" >
+                   <span style = "color : #ff0000">' .$_SESSION["error"]. '</span >
+                   </div >';
+            $_SESSION["error"] = null;
+         }
+        ?>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>
 
-// todo: validate
-
-$query = mysqli_query($con, "select * from users where email = '$email' and password = '$password'");
-
-if ($row = mysqli_fetch_array($query)) {
-    $_SESSION["userName"] = $row["name"];
-    $_SESSION["userEmail"] = $row["email"];
-    $_SESSION["userPassword"] = $row["password"];
-    $_SESSION["userGender"] = $row["gender"];
-    $_SESSION["userBirthdate"] = $row["birthdate"];
-    header("Location: welcome.php");
-} else {
-    echo "not Found";
-}
-
-mysqli_close($con);
-
-?>
+</body>
 </html>

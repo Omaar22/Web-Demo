@@ -6,27 +6,28 @@ session_start();
     <meta charset="utf-8"/>
     <title>Profile</title>
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="https://www.w3schools.com/lib/w3.js"></script>
 </head>
 
 <body>
 
-<div w3-include-html="fragments/header-in.html"></div>
+<?php include "fragments/header-in.html"; ?>
+
 <div class="container">
     <h1 class="form-heading">Profile</h1>
     <hr>
     <label>
         <?php
-        echo $_SESSION["userName"] ."<br>";
-        echo $_SESSION["userEmail"] ."<br>";
-        echo $_SESSION["userGender"] ."<br>";
-        echo $_SESSION["userBirthdate"] ."<br>";
+        echo $_SESSION["userName"] . "<br>";
+        echo $_SESSION["userEmail"] . "<br>";
+        echo $_SESSION["userGender"] . "<br>";
+        echo $_SESSION["userBirthdate"] . "<br>";
         ?>
     </label>
+    <form action="change_password.php" method="post">
+        Change Password: <input type="password" placeholder="New Password" name="password" minlength="6">
+        <input type="submit">
+    </form>
 </div>
-<script>
-    w3.includeHTML();
-</script>
 
 </body>
 </html>

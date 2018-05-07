@@ -5,7 +5,7 @@ session_start();
 <body>
 
 <?php
-$con = mysqli_connect("localhost", "root", "123");
+$con = mysqli_connect("localhost", "root", "");
 
 mysqli_select_db($con, "web_demo");
 
@@ -16,7 +16,7 @@ $query = mysqli_query($con, "delete from my_books where book_id = '$book_id'");
 if ($query) {
     header("Location: mybooks.php");
 } else {
-    echo "not inserted!";
+    echo "Error!";
 }
 mysqli_close($con);
 ?>
